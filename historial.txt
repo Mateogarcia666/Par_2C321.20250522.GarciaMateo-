@@ -1,0 +1,14 @@
+    1  ls
+    2  ls -l
+    3  ls -la
+    4  man ls
+    5  man man
+    6  pwd
+    7  cd repogit/
+    8  ls
+    9  git clone https://github.com/Mateogarcia666/repo_garciam.git
+   10  ls
+   11  cd repo_garciam/
+   12  ls
+   13  history
+   14  history > historial.txt
