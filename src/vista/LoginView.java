@@ -24,6 +24,8 @@ public class LoginView extends VBox {
         setSpacing(10);
         setPadding(new Insets(20));
 
+        Label lblNombre = new Label("Nombre:");
+        TextField campoNombre = new TextField();
         Label lblEmail = new Label("Email:");
         TextField campoEmail = new TextField();
         Label lblPass = new Label("Contraseña:");
@@ -34,25 +36,31 @@ public class LoginView extends VBox {
         Label mensaje = new Label();
 
         btnLogin.setOnAction(e -> {
-            Cliente cliente = controlador.login(campoEmail.getText(), campoPass.getText());
+            Cliente cliente = controlador.login(campoNombre.getText(), campoEmail.getText(), campoPass.getText());
             if (cliente != null) {
                 SalaView vista = new SalaView(stage, controlador, cliente);
                 stage.setScene(new Scene(vista));
             } else {
-                mensaje.setText("Credenciales incorrectas");
+                mensaje.setText("Usuario no registrado");
             }
         });
 
         btnRegistro.setOnAction(e -> {
-            boolean registrado = controlador.registrar(campoEmail.getText(), campoPass.getText());
-            if (registrado) {
+            String nombre = campoNombre.getText();
+            String email = campoEmail.getText();
+            String pass = campoPass.getText();
+            if (nombre.isEmpty() || email.isEmpty() || pass.isEmpty()){
+                mensaje.setText("Debe completar los 3 datos");
+                return;
+            }
+            if (controlador.registrar(nombre, email, pass)) {
                 mensaje.setText("Registro exitoso. Ahora puede iniciar sesión.");
             } else {
                 mensaje.setText("El email ya está registrado.");
             }
         });
 
-        getChildren().addAll(lblEmail, campoEmail, lblPass, campoPass, btnLogin, btnRegistro, mensaje);
+        getChildren().addAll(lblNombre, campoNombre, lblEmail, campoEmail, lblPass, campoPass, btnLogin, btnRegistro, mensaje);
     }
 }
 

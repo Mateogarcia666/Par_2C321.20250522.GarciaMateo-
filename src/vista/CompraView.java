@@ -30,11 +30,13 @@ public class CompraView extends VBox{
         setPadding(new Insets(20));
 
         Label titulo = new Label("Elija una butaca - " + sala.getPelicula());
+        Label disponible = new Label("Butacas libres O | butacas ocupadas X");
         GridPane grid = new GridPane();
 
         for (int i = 0; i < sala.getButacas().length; i++) {
             for (int j = 0; j < sala.getButacas()[i].length; j++) {
                 Butaca b = sala.getButacas()[i][j];
+                // aca uso x para butacas ocupadas y o para butacas libres
                 Button btn = new Button(b.estaOcupada() ? "X" : "O");
                 btn.setDisable(b.estaOcupada());
                 int fila = i;
@@ -58,7 +60,7 @@ public class CompraView extends VBox{
             stage.setScene(new Scene(new SalaView(stage, controlador, cliente)));
         });
         
-        getChildren().addAll(titulo, grid, btnVolver);
+        getChildren().addAll(titulo, disponible, grid, btnVolver);
     }
 }
 

@@ -38,15 +38,15 @@ public class ControladorCine {
         return clienteActual;
     }
 
-    public Cliente login(String email, String pass) {
+    public Cliente login(String nombre,String email, String pass) {
         Cliente c = cine.buscarCliente(email, pass);
         if (c != null) clienteActual = c;
         return c;
     }
 
-    public boolean registrar(String email, String pass) {
+    public boolean registrar(String nombre, String email, String pass) {
         if (cine.existeCliente(email)) return false;
-        Cliente nuevo = new Cliente("Cliente", email, pass);
+        Cliente nuevo = new Cliente(nombre,email, pass);
         cine.agregarCliente(nuevo);
         PersistenciaDatos.guardar(cine);
         return true;
@@ -62,7 +62,7 @@ public class ControladorCine {
         }
     }
     public void registrarEntrada(Entrada entrada) {
-        // lógica para agregar la entrada al cine, ej:
+        // lógica para agregar la entrada al cine
         cine.agregarEntrada(entrada);
     }
 

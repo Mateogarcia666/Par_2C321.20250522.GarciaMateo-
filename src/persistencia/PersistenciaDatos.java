@@ -35,6 +35,7 @@ public class PersistenciaDatos {
             Cine cine = new Cine();
             cine.agregarSala(new Sala(1, "Matrix", 5, 6));
             cine.agregarSala(new Sala(2, "Interestelar", 4, 5));
+            cine.agregarSala(new Sala(3, "Avengers", 5,7));
             return cine;
         }
 
